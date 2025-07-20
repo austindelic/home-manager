@@ -34,7 +34,11 @@
               lazygit
             ];
 
-            xdg.configFile."nvim".source = ./nvim;
+            home.activation.installLazyVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              echo "Copying LazyVim config to ~/.config/nvim..."
+              rm -rf ~/.config/nvim
+              cp -r ${./nvim} ~/.config/nvim
+            '';
 
             # ✅ Correctly placed inside module lambda, using HM's extended `lib`
             home.activation.setRustupDefault = lib.hm.dag.entryAfter [ "installPackages" ] ''

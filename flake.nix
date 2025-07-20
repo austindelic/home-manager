@@ -16,16 +16,36 @@
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          {
+          # This is a lambda (function) that gets special lib from Home Manager
+          ({ pkgs, lib, ... }: {
             home.username = "austin";
             home.homeDirectory = "/home/austin";
             home.stateVersion = "23.11";
             targets.genericLinux.enable = true;
             programs.home-manager.enable = true;
-            home.packages = with pkgs; [ git neovim gcc python3 rustup gh lazygit ];
-	    xdg.configFile."nvim".source = ./nvim;
-          }
+
+            home.packages = with pkgs; [
+              git
+              neovim
+              gcc
+              python3
+              rustup
+              gh
+              lazygit
+            ];
+
+            xdg.configFile."nvim".source = ./nvim;
+
+            # ✅ Correctly placed inside module lambda, using HM's extended `lib`
+            home.activation.setRustupDefault = lib.hm.dag.entryAfter [ "installPackages" ] ''
+              if ! ${pkgs.rustup}/bin/rustup show | grep -q "stable"; then
+                echo "Setting rustup default to stable..."
+                ${pkgs.rustup}/bin/rustup default stable
+              fi
+            '';
+          })
         ];
       };
   };
 }
+

@@ -22,7 +22,7 @@
             home.stateVersion = "23.11";
             targets.genericLinux.enable = true;
             programs.home-manager.enable = true;
-            home.packages = with pkgs; [ git neovim gcc python3 rustup gh ];
+            home.packages = with pkgs; [ git neovim gcc python3 rustup gh lazygit ];
 	    xdg.configFile."nvim".source = ./nvim;
           }
         ];

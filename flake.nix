@@ -17,7 +17,7 @@
         inherit pkgs;
         modules = [
           # This is a lambda (function) that gets special lib from Home Manager
-          ({ pkgs, lib, ... }: {
+          ({ pkgs, lib, config, ... }: {
             home.username = "austin";
             home.homeDirectory = "/home/austin";
             home.stateVersion = "23.11";
@@ -34,11 +34,7 @@
               lazygit
             ];
 
-            home.activation.installLazyVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-              echo "Copying LazyVim config to ~/.config/nvim..."
-              rm -rf ~/.config/nvim
-              cp -r ${./nvim} ~/.config/nvim
-            '';
+             home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/configs/nvim";
 
             # ✅ Correctly placed inside module lambda, using HM's extended `lib`
             home.activation.setRustupDefault = lib.hm.dag.entryAfter [ "installPackages" ] ''

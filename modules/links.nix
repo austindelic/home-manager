@@ -3,13 +3,13 @@
 { config, lib, ... }:
 
 let
-  # Relative path inside the flake
-  configDir = ./../configs;
-  dotConfigs = builtins.attrNames (builtins.readDir configDir);
+  # Relative to the user's home directory, NOT absolute!
+  configDir = ".config/home-manager/configs";
+  configNames = builtins.attrNames (builtins.readDir ../../configs);
 in {
   home.file = builtins.listToAttrs (map (name: {
     name = ".config/${name}";
-    value.source = configDir + "/${name}";
-  }) dotConfigs);
+    value.source = "${configDir}/${name}";
+  }) configNames);
 }
 

@@ -15,6 +15,7 @@
       inherit pkgs;
       modules = [
         ./modules/packages.nix
+        ./modules/post_install.nix
         # This is a lambda (function) that gets special lib from Home Manager
         ({ pkgs, lib, config, ... }: {
           home.username = "austin";
@@ -27,13 +28,7 @@
             "${config.home.homeDirectory}/.config/home-manager/configs/nvim";
 
           # ✅ Correctly placed inside module lambda, using HM's extended `lib`
-          home.activation.setRustupDefault =
-            lib.hm.dag.entryAfter [ "installPackages" ] ''
-              if ! ${pkgs.rustup}/bin/rustup show | grep -q "stable"; then
-                echo "Setting rustup default to stable..."
-                ${pkgs.rustup}/bin/rustup default stable
-              fi
-            '';
+
         })
       ];
     };

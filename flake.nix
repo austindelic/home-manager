@@ -16,13 +16,9 @@
       modules = [
         ./modules/packages.nix
         ./modules/post_install.nix
+        ./modules/core.nix
         # This is a lambda (function) that gets special lib from Home Manager
         ({ pkgs, lib, config, ... }: {
-          home.username = "austin";
-          home.homeDirectory = "/home/austin";
-          home.stateVersion = "23.11";
-          targets.genericLinux.enable = true;
-          programs.home-manager.enable = true;
 
           home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink
             "${config.home.homeDirectory}/.config/home-manager/configs/nvim";

@@ -3,13 +3,15 @@
 { config, lib, ... }:
 
 let
-  # Relative to the user's home directory, NOT absolute!
-  configDir = ".config/home-manager/configs";
-  configNames = builtins.attrNames (builtins.readDir ../../configs);
+  configDir = ./../configs;
+  dotConfigs = builtins.attrNames (builtins.readDir configDir);
 in {
   home.file = builtins.listToAttrs (map (name: {
     name = ".config/${name}";
-    value.source = "${configDir}/${name}";
-  }) configNames);
+    value = {
+      source = configDir
+        + "/${name}"; # this is correct as long as configDir is a path
+    };
+  }) dotConfigs);
 }
 

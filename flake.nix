@@ -14,10 +14,10 @@
     in home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
+        ./modules/links.nix
         ./modules/packages.nix
         ./modules/post_install.nix
         ./modules/core.nix
-        ./modules/links.nix
       ];
     };
   };

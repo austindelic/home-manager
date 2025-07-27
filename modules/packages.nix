@@ -3,5 +3,5 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ git neovim gcc python3 rustup gh lazygit ];
+  home.packages = with pkgs; [ git neovim gcc python3 rustup gh lazygit fd ];
 }

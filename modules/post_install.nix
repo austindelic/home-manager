@@ -8,5 +8,6 @@
         ${pkgs.rustup}/bin/rustup default stable
       fi
     '';
+
 }
 

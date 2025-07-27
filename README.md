@@ -20,5 +20,6 @@ echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf
 nix flake clone github:austindelic/home-manager --dest ~/.config/home-manager
 nix run github:nix-community/home-manager -- switch --flake ~/.config/home-manager#austin
 nvim --headless "+Lazy! sync" +qa
+home-manager switch --flake flake.nix
 ```
 

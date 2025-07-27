@@ -18,7 +18,6 @@
         ./modules/post_install.nix
         ./modules/core.nix
         ./modules/links.nix
-        # This is a lambda (function) that gets special lib from Home Manager
       ];
     };
   };

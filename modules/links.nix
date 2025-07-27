@@ -6,8 +6,7 @@
   home.file = {
     ".config/nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink
-        "/home/austin/.config/home-manager/configs/nvim";
-      recursive = true;
+        "${config.home.homeDirectory}/.config/home-manager/configs/nvim";
     };
   };
 }

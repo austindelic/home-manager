@@ -6,3 +6,4 @@ switch:
 
 clean:
 	nix-collect-garbage -d
+

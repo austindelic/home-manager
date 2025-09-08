@@ -1,0 +1,7 @@
+{
+    "workbench.colorTheme": "Monokai Night",
+    "terminal.integrated.fontFamily": "JetBrainsMonoNL Nerd Font Mono",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "git.confirmSync": false,
+    "git.autofetch": true
+}

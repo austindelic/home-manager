@@ -46,7 +46,6 @@
     kubectl
     terraform
     nodejs
-    helm
 
     # Fonts:
     nerd-fonts.jetbrains-mono
